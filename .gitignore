@@ -1,0 +1,16 @@
+/Temp/
+
+/.vs/
+
+/Library/
+
+/Build/
+
+/obj/
+
+*.sln
+
+*.csproj
+
+*.rar
+
