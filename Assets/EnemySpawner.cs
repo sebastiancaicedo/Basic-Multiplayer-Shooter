@@ -5,8 +5,13 @@ using UnityEngine.Networking;
 
 public class EnemySpawner : NetworkBehaviour {
 
+    [Header("Enemies")]
     public GameObject enemyPrefab;
     public int numberOfEnemies;
+    [Header("Potions")]
+    public GameObject healthPotionPrefab;
+    public int numberOfPotions;
+    public Transform[] potionsSpawnPoints;
 
     public override void OnStartServer()
     {
@@ -17,6 +22,13 @@ public class EnemySpawner : NetworkBehaviour {
             var enemy = Instantiate(enemyPrefab, spawnPosition, spawnRotation);
 
             NetworkServer.Spawn(enemy);
+        }
+
+        for (int i = 0; i < numberOfPotions; i++)
+        {
+            var spawnPoint = potionsSpawnPoints[Random.Range(0, potionsSpawnPoints.Length)];
+            var potion = Instantiate(healthPotionPrefab, spawnPoint.position, Quaternion.identity);
+            NetworkServer.Spawn(potion);
         }
     }
 }

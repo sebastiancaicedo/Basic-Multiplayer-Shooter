@@ -65,4 +65,18 @@ public class Health : NetworkBehaviour {
         }
     }
 
+    public void RestoreHealth(int restoreAmount)
+    {
+        if (!isServer) return;
+
+        if (currentHealth + restoreAmount > MAX_HEALTH)
+        {
+            currentHealth = MAX_HEALTH;
+        }
+        else
+        {
+            currentHealth += restoreAmount;
+        }
+    }
+
 }
